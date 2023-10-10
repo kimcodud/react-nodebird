@@ -9,6 +9,7 @@
   "author": "Chae Young Kim",
   "license": "ISC",
   "dependencies": {
-    "next": "^13.5.4"
+    "next": "^13.5.4",
+    "prop-types": "^15.8.1"
   }
 }
