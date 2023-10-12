@@ -2,7 +2,7 @@ import React from 'react';
 import AppLayout from '../components/AppLayout';
 import Head from 'next/head';
 
-const Singup = () => {
+const Signup = () => {
   return (
     <>
       <Head>
@@ -15,4 +15,4 @@ const Singup = () => {
   );
 };
 
-export default Singup;
+export default Signup;
