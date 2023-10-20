@@ -3,6 +3,7 @@ import { Form, Input, Button } from 'antd';
 import Link from 'next/link';
 import styled from 'styled-components';
 import propTypes from 'prop-types';
+import useInput from '../hooks/useInput';
 
 const ButtonWrapper = styled.div`
   margintop: 10px;
@@ -12,23 +13,26 @@ const FormWapper = styled(Form)`
   padding: 10px;
 `;
 const LoginForm = ({ setIsLoggedIn }) => {
-  const [id, setId] = useState('');
-  const onChangeId = useCallback((e) => {
-    setId(e.target.value);
-  }, []);
+  const [id, onChangeId] = useInput('');
 
-  const [password, setPassword] = useState('');
-  const onChangePassword = useCallback((e) => {
-    setPassword(e.target.value);
-  }, []);
+  // const [id, setId] = useState('');
+  // const onChangeId = useCallback((e) => {
+  //   setId(e.target.value);
+  // }, []);
 
-  const style = useMemo(() => ({ marginTop: 10 }), []);
+  const [password, onChangePassword] = useInput('');
+
+  // const [password, setPassword] = useState('');
+  // const onChangePassword = useCallback((e) => {
+  //   setPassword(e.target.value);
+  // }, []);
 
   const onSubmitForm = useCallback(() => {
     console.log(id, password);
     setIsLoggedIn(true);
   }, [id, password]);
 
+  const style = useMemo(() => ({ marginTop: 10 }), []);
   return (
     <FormWapper onFinish={onSubmitForm}>
       <div>
