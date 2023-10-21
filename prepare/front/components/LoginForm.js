@@ -1,9 +1,10 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Form, Input, Button } from 'antd';
 import Link from 'next/link';
 import styled from 'styled-components';
-import propTypes from 'prop-types';
 import useInput from '../hooks/useInput';
+import { useDispatch } from 'react-redux';
+import { loginAction } from '../reducers';
 
 const ButtonWrapper = styled.div`
   margintop: 10px;
@@ -12,24 +13,15 @@ const ButtonWrapper = styled.div`
 const FormWapper = styled(Form)`
   padding: 10px;
 `;
-const LoginForm = ({ setIsLoggedIn }) => {
+const LoginForm = () => {
+  const dispatch = useDispatch();
   const [id, onChangeId] = useInput('');
-
-  // const [id, setId] = useState('');
-  // const onChangeId = useCallback((e) => {
-  //   setId(e.target.value);
-  // }, []);
 
   const [password, onChangePassword] = useInput('');
 
-  // const [password, setPassword] = useState('');
-  // const onChangePassword = useCallback((e) => {
-  //   setPassword(e.target.value);
-  // }, []);
-
   const onSubmitForm = useCallback(() => {
     console.log(id, password);
-    setIsLoggedIn(true);
+    dispatch(loginAction({ id, password }));
   }, [id, password]);
 
   const style = useMemo(() => ({ marginTop: 10 }), []);
@@ -61,10 +53,6 @@ const LoginForm = ({ setIsLoggedIn }) => {
       </ButtonWrapper>
     </FormWapper>
   );
-};
-
-LoginForm.propTypes = {
-  setIsLoggedIn: propTypes.func.isRequired,
 };
 
 export default LoginForm;
