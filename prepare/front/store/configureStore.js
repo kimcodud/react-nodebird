@@ -1,14 +1,21 @@
 import { createWrapper } from 'next-redux-wrapper';
-import { createStore } from 'redux';
+import {
+  compose,
+  applyMiddleware,
+  legacy_createStore as createStore,
+} from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import reducer from '../reducers';
 
 const configureStore = () => {
-  const store = createStore(reducer);
-  store.dispatch({
-    type: 'CHANGE_NICKNAME',
-    data: 'bbkim',
-  });
+  const middlewares = [];
+  const enhancer =
+    process.env.NODE_ENV === 'production'
+      ? compose(applyMiddleware(...middlewares))
+      : composeWithDevTools(applyMiddleware(...middlewares));
+
+  const store = createStore(reducer, enhancer);
   return store;
 };
 
