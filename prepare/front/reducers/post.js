@@ -10,7 +10,11 @@ export const initialState = {
       Images: [
         {
           src: 'https://as2.ftcdn.net/v2/jpg/02/66/72/41/1000_F_266724172_Iy8gdKgMa7XmrhYYxLCxyhx6J7070Pr8.jpg',
+        },
+        {
           src: 'https://t4.ftcdn.net/jpg/02/64/15/41/240_F_264154131_XvpBI5fARjB7Qlo4PMrMMTaunXha47NR.jpg',
+        },
+        {
           src: 'https://t3.ftcdn.net/jpg/02/97/99/50/240_F_297995004_KIRJlI4JXoOGdnk6fj8NMTC9Xvt7b5Im.jpg',
         },
       ],
