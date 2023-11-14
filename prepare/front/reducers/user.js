@@ -1,5 +1,7 @@
 export const initialState = {
+  isLoggingIn: false, //로그인 시도 중
   isLoggedIn: false,
+  isLoggingOut: false, //로그아웃 시도 중
   me: null,
   signUpData: {},
   loginData: {},
@@ -28,18 +30,6 @@ export const loginRequestAction = (data) => {
   };
 };
 
-export const loginSuccessAction = (data) => {
-  return {
-    type: 'LOG_IN_SUCCESS',
-  };
-};
-
-export const loginFailureAction = (data) => {
-  return {
-    type: 'LOG_IN_FAILURE',
-  };
-};
-
 export const logoutRequestAction = (data) => {
   return {
     type: 'LOG_OUT_REQUEST',
@@ -47,33 +37,45 @@ export const logoutRequestAction = (data) => {
   };
 };
 
-export const logoutSuccessAction = (data) => {
-  return {
-    type: 'LOG_OUT_SUCCESS',
-    data,
-  };
-};
-
-export const logoutFailureAction = (data) => {
-  return {
-    type: 'LOG_OUT_FAILURE',
-    data,
-  };
-};
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'LOG_IN':
+    case 'LOG_IN_REQUEST':
       return {
         ...state,
-        isLoggedIn: true,
-        me: action.data,
+        isLoggingIn: true,
       };
-    case 'LOG_OUT':
+    case 'LOG_IN_SUCCESS':
       return {
         ...state,
+        isLoggingIn: false,
+        isLoggedIn: true,
+        me: { ...action.data, nickname: 'cykim' },
+      };
+    case 'LOG_IN_FAILURE':
+      return {
+        ...state,
+        isLoggingIn: false,
         isLoggedIn: false,
-        me: null,
+      };
+    case 'LOG_OUT_REQUEST':
+      return {
+        ...state,
+        isLoggingOut: true,
+        // me: null,
+      };
+    case 'LOG_OUT_SUCCESS':
+      return {
+        ...state,
+        isLoggingOut: false,
+        isLoggedIn: false,
+        // me: null,
+      };
+    case 'LOG_OUT_FAILURE':
+      return {
+        ...state,
+        isLoggingOut: false,
+        isLoggedIn: true,
+        // me: null,
       };
     default:
       return state;

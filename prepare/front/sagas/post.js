@@ -1,8 +1,6 @@
 import { all, fork, takeLatest, put, delay } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { fork } from 'redux-saga/effects';
-
 function addPostAPI() {
   return axios.post('/api/post');
 }
