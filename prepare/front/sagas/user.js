@@ -71,7 +71,7 @@ function* signUp() {
     });
   } catch (err) {
     yield put({
-      type: SIGN_UP_FAILURE,
+      type: SIGN_UP_FAILURE_FAILURE,
       error: err.response.data,
     });
   }
