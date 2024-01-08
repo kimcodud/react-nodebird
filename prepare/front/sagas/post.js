@@ -16,10 +16,10 @@ function addPostAPI(data) {
 function* addPost(action) {
   try {
     yield delay(1000);
-    // const result = yield call(addPostAPI);
+    // const result = yield call(addPostAPI, action.data);
     yield put({
       type: ADD_POST_SUCCESS,
-      // data: result.data,
+      data: action.data,
     });
   } catch (err) {
     yield put({
@@ -36,10 +36,10 @@ function addCommentAPI(data) {
 function* addComment(action) {
   try {
     yield delay(1000);
-    // const result = yield call(addCommentAPI);
+    // const result = yield call(addCommentAPI, action.data);
     yield put({
       type: ADD_COMMENT_SUCCESS,
-      // data: result.data,
+      data: action.data,
     });
   } catch (err) {
     yield put({

@@ -8,6 +8,9 @@ export const initialState = {
   signUpLoading: false, //회원가입 시도 중
   signUpDone: false,
   signUpError: null,
+  changeNicknameLoading: false, //닉네임 변경 시도 중
+  changeNicknameDone: false,
+  changeNicknameError: null,
   me: null,
   signUpData: {},
   loginData: {},
@@ -43,6 +46,10 @@ export const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
 export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE';
 
+export const CHANGE_NICKNAME_REQUEST = 'CHANGE_NICKNAME_REQUEST';
+export const CHANGE_NICKNAME_SUCCESS = 'CHANGE_NICKNAME_SUCCESS';
+export const CHANGE_NICKNAME_FAILURE = 'CHANGE_NICKNAME_FAILURE';
+
 export const FOLLOW_REQUEST = 'FOLLOW_REQUEST';
 export const FOLLOW_SUCCESS = 'FOLLOW_SUCCESS';
 export const FOLLOW_FAILURE = 'FOLLOW_FAILURE';
@@ -50,10 +57,6 @@ export const FOLLOW_FAILURE = 'FOLLOW_FAILURE';
 export const UNFOLLOW_REQUEST = 'UNFOLLOW_REQUEST';
 export const UNFOLLOW_SUCCESS = 'UNFOLLOW_SUCCESS';
 export const UNFOLLOW_FAILURE = 'UNFOLLOW_FAILURE';
-
-export const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST';
-export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
-export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
 
 const dummyUser = (data) => ({
   ...data,
@@ -143,28 +146,30 @@ const reducer = (state = initialState, action) => {
         signUpError: action.error,
         // me: null,
       };
-    case ADD_COMMENT_REQUEST:
+
+    case CHANGE_NICKNAME_REQUEST:
       return {
         ...state,
-        addPostLoading: true,
-        addPostDone: false,
-        addPostError: null,
+        changeNicknameLoading: true,
+        changeNicknameDone: false,
+        changeNicknameError: null,
         // me: null,
       };
-    case ADD_COMMENT_SUCCESS:
+    case CHANGE_NICKNAME_SUCCESS:
       return {
         ...state,
-        addPostLoading: false,
-        addPostDone: true,
+        changeNicknameLoading: false,
+        changeNicknameDone: true,
         // me: null,
       };
-    case ADD_COMMENT_FAILURE:
+    case CHANGE_NICKNAME_FAILURE:
       return {
         ...state,
-        addPostLoading: false,
-        addPostError: action.error,
+        changeNicknameLoading: false,
+        changeNicknameError: action.error,
         // me: null,
       };
+
     default:
       return state;
   }
